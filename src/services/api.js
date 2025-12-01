@@ -1,6 +1,6 @@
 // services/api.js
 
-const API_URL = 'http://127.0.0.1:80/qrcodes/';
+const API_URL = 'https://generate-qrcode-backend-fastapi-docker.onrender.com/qrcodes/';
 
 /**
  * Envia os dados para a API e retorna a imagem como um Blob.
