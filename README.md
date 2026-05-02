@@ -19,6 +19,10 @@ O projeto conta com uma interface dividida em três abas principais, baseada em 
    - Tira uma "foto" e envia para análise.
    - Se o resultado for um link válido, redireciona o usuário de forma automática para a página contida no QR Code.
 
+4. **Histórico Local**
+   - Salva automaticamente todos os QR Codes gerados no armazenamento local do navegador (`localStorage`).
+   - Permite visualizar links gerados anteriormente e excluí-los se necessário, mesmo após fechar o navegador.
+
 ## 🛠️ Tecnologias Utilizadas
 
 - **[React](https://reactjs.org/)** (v19)
@@ -30,33 +34,45 @@ O projeto conta com uma interface dividida em três abas principais, baseada em 
 
 ## 🚀 Como Rodar o Projeto
 
-### Pré-requisitos
-- Node.js (v18+) instalado.
-- API Backend (FastAPI) rodando localmente na porta `8000`.
+### 1. Pré-requisitos
+- **Node.js** (v18 ou superior) instalado no computador.
 
-### Passos de Instalação
-
-1. Instale as dependências:
+### 2. Instalação e Execução
+No terminal, dentro da pasta do projeto, execute:
 ```bash
+# 1. Instalar as dependências
 npm install
-```
 
-2. Rode o servidor de desenvolvimento:
-```bash
+# 2. Iniciar o servidor de desenvolvimento
 npm run dev
 ```
 
-### 📱 Testando a Câmera no Celular
-A maioria dos navegadores de celular bloqueia a câmera em endereços inseguros (`http://`). Para facilitar os testes do `Scanner de Câmera` no próprio dispositivo:
+### 3. Como conectar com a sua API (Backend)
+Se você ou outra pessoa quiser usar este frontend com um backend diferente, existem dois caminhos:
 
-Nós configuramos o projeto com o plugin `@vitejs/plugin-basic-ssl` e um **Proxy Reverso**.
-Inicie o projeto expondo para a sua rede local e usando os certificados:
-```bash
-npm run dev -- --host
-```
-1. Acesse pelo celular a URL da sua rede, por exemplo: `https://192.168.x.x:5173`.
-2. O seu celular dirá que a conexão não é segura (pois o certificado SSL foi gerado no seu PC para desenvolvimento e não é público). Clique em **"Avançado" -> "Ir para o site assim mesmo"**.
-3. *Proxy:* O Vite interceptará tudo que o React mandar para `/api/...` e encaminhará internamente para o seu Python (`http://127.0.0.1:8000`), sem bloquear chamadas ou gerar conflitos de *Mixed Content*.
+#### **A. No Ambiente de Desenvolvimento (Local)**
+Para testar localmente, o projeto usa um **Proxy**. Isso permite que o celular acesse a câmera via HTTPS enquanto a API roda em HTTP no PC.
+- Abra o arquivo `vite.config.js`.
+- Localize o campo `target` dentro de `server.proxy`.
+- Mude o link `http://127.0.0.1:8000` para o endereço local da sua nova API.
+
+#### **B. No Ambiente de Produção (Publicado)**
+Se você for publicar o site na internet (Vercel, Render, etc):
+- Localize o arquivo `.env` na raiz.
+- Mude `VITE_API_URL=/api` para o link real da sua API na nuvem (ex: `https://sua-api.com`).
+
+---
+
+### 📱 Testando a Câmera no Celular
+A maioria dos navegadores de celular bloqueia a câmera em endereços inseguros (`http://`). Para facilitar os testes no dispositivo:
+
+1. Inicie o projeto com o comando:
+   ```bash
+   npm run dev -- --host
+   ```
+2. Acesse a URL da sua rede exibida no terminal (ex: `https://192.168.x.x:5173`).
+3. Como o certificado SSL é local, o celular dará um aviso de "Conexão não segura". Clique em **"Avançado"** e em **"Ir para o site assim mesmo"**.
+4. O site abrirá com HTTPS e a câmera funcionará!
 
 ## 📁 Estrutura de Diretórios
 

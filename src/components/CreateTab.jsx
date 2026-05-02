@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Link as LinkIcon, FileText, Wand2, CheckCircle, Download } from 'lucide-react';
 import api from '../services/api';
 
-export default function CreateTab() {
+export default function CreateTab({ addToHistory }) {
   const [url, setUrl] = useState('');
   const [titulo, setTitulo] = useState('');
   const [loading, setLoading] = useState(false);
@@ -23,6 +23,10 @@ export default function CreateTab() {
       
       const blobUrl = URL.createObjectURL(response.data);
       setQrcodeUrl(blobUrl);
+      
+      if (addToHistory) {
+        addToHistory({ url, titulo });
+      }
     } catch (err) {
       setError('Erro ao gerar QR Code. Verifique se a API está rodando.');
     } finally {

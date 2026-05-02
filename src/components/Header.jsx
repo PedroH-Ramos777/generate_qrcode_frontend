@@ -1,4 +1,4 @@
-import { QrCode, Link as LinkIcon, CloudUpload, Camera } from 'lucide-react';
+import { QrCode, Link as LinkIcon, CloudUpload, Camera, History } from 'lucide-react';
 
 export default function Header({ activeTab, setActiveTab }) {
   return (
@@ -44,6 +44,18 @@ export default function Header({ activeTab, setActiveTab }) {
             <Camera className="w-4 h-4" />
             <span className="hidden sm:inline">Scanner de Câmera</span>
             <span className="sm:hidden">Câmera</span>
+          </button>
+          <button 
+            onClick={() => setActiveTab('history')}
+            className={`flex items-center gap-2 px-4 sm:px-6 h-full font-medium transition-colors ${
+              activeTab === 'history' 
+                ? 'text-white border-b-2 border-red-500' 
+                : 'text-gray-400 hover:text-white border-b-2 border-transparent'
+            }`}
+          >
+            <History className="w-4 h-4" />
+            <span className="hidden sm:inline">Histórico</span>
+            <span className="sm:hidden">Hist.</span>
           </button>
         </nav>
       </div>
