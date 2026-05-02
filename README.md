@@ -1,15 +1,16 @@
-🔗 Gerador de QR Code - Frontend (Vanilla JS + Tailwind)Este é o frontend da aplicação de geração de QR Code, desenvolvido com HTML, JavaScript Vanilla (usando módulos ES6) e estilização moderna através do Tailwind CSS.O objetivo principal é consumir o endpoint da API FastAPI em Python, enviando os dados e exibindo a imagem PNG binária do QR Code na interface do usuário.
+# React + Vite
 
-🏗️ Arquitetura do FrontendO projeto adota um padrão de Separação por Módulos (ES Modules) para garantir que a interface e a lógica de comunicação estejam estritamente separadas.
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-📁 Estrutura de PastasFRONTEND_QRCODE/
-├── index.html                  # Layout e Design (HTML + Tailwind CDN)
-└── src/                        
-    ├── main.js                 # Ponto de entrada e orquestração
-    └── modules/
-        ├── api.js              # Lógica de Comunicação com a API
-        └── ui.js               # Lógica de Interface e DOM
+Currently, two official plugins are available:
 
-🧠 Visão Geral dos MódulosArquivoResponsabilidadeDetalhesindex.htmlEstrutura e EstiloImporta o src/main.js usando type="module" para ativar a sintaxe import/export.src/main.jsOrquestradorCaptura dados do formulário, trata eventos e coordena o fluxo de trabalho (Chamar API -> Atualizar UI).src/modules/api.jsCamada de DadosContém a função generateQrcode(), que envia a requisição POST para o Backend e lida com a resposta binária (Blob).src/modules/ui.jsCamada de InterfaceContém funções para manipular o DOM: updateButtonState() (spinner), displayQrcode() e displayError().
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
 
-🎨 Design e EstilizaçãoO design utiliza uma paleta de cores moderna focada em vermelho e cinza escuro para alto contraste.Fundo: Gradiente intenso (linear-gradient) de cinza escuro para vermelho escuro.Controles: Botões com gradientes de vermelho e efeitos hover e focus bem definidos.Ícones: Utilização do Font Awesome para feedback visual (link, download, spinner).
+## React Compiler
+
+The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+
+## Expanding the ESLint configuration
+
+If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.

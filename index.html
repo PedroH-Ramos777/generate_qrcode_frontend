@@ -1,72 +1,13 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gerador de QR Code</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    
-    <style type="text/tailwindcss">
-      @layer base {
-        body {
-          /* Você pode importar fontes do Google Fonts aqui, por exemplo */
-          /* font-family: 'Poppins', sans-serif; */
-        }
-      }
-    </style>
-</head>
-<body class="bg-gradient-to-br from-gray-800 to-red-900 min-h-screen flex items-center justify-center p-4">
-
-    <div class="bg-white p-8 rounded-2xl shadow-2xl w-full max-w-md transform transition-all duration-300 hover:scale-105 hover:shadow-3xl">
-        <h1 class="text-4xl font-extrabold text-gray-900 mb-8 text-center flex items-center justify-center gap-3">
-            Gerar QR Code 
-            <i class="fas fa-qrcode text-red-600"></i> </h1>
-
-        <form id="qrcode-form" class="space-y-5">
-            <div>
-                <label for="url" class="block text-sm font-medium text-gray-700 mb-1">
-                    <i class="fas fa-link text-red-500 mr-2"></i>URL para Codificar </label>
-                <input type="url" id="url" required 
-                       class="w-full px-4 py-2.5 border border-gray-300 rounded-xl focus:ring-red-500 focus:border-red-500 transition duration-200 shadow-sm"
-                       placeholder="https://sua-url-aqui.com.br">
-            </div>
-
-            <div>
-                <label for="titulo" class="block text-sm font-medium text-gray-700 mb-1">
-                    <i class="fas fa-file-alt text-red-500 mr-2"></i>Nome do Arquivo </label>
-                <input type="text" id="titulo" required 
-                       class="w-full px-4 py-2.5 border border-gray-300 rounded-xl focus:ring-red-500 focus:border-red-500 transition duration-200 shadow-sm"
-                       placeholder="ex: meu_site_qrcode">
-            </div>
-
-            <button type="submit" id="submit-button" 
-                    class="w-full bg-gradient-to-r from-red-600 to-red-800 text-white py-2.5 rounded-lg font-semibold 
-                            hover:from-red-700 hover:to-red-900 transition duration-200 
-                            focus:outline-none focus:ring-4 focus:ring-red-500 focus:ring-opacity-50 flex items-center justify-center gap-2">
-                <i class="fas fa-magic"></i> GERAR QR CODE
-            </button>
-        </form>
-
-        <hr class="my-6 border-gray-200">
-
-        <div id="result-area" class="mt-6 text-center hidden">
-            <h2 class="text-2xl font-semibold text-gray-800 mb-4 flex items-center justify-center gap-2">
-                <i class="fas fa-check-circle text-green-500"></i> Seu QR Code está pronto! </h2>
-            
-            <img id="qrcode-image" src="" alt="QR Code Gerado" 
-                 class="w-56 h-56 mx-auto border-8 border-gray-100 rounded-xl shadow-xl mb-6">
-            
-            <a id="download-link" download="qrcode.png" 
-               class="inline-flex items-center gap-2 bg-gradient-to-r from-red-500 to-red-700 text-white py-2.5 px-8 rounded-lg font-semibold 
-                      hover:from-red-600 hover:to-red-800 transition duration-200 cursor-pointer shadow-lg">
-                <i class="fas fa-download"></i> Baixar Imagem
-            </a>
-        </div>
-        
-        <p id="message-area" class="mt-4 text-center text-red-600 font-medium"></p>
-    </div>
-
-    <script src="src/main.js" type="module"></script>
-</body>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>generate_qrcode_frontend</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
 </html>
