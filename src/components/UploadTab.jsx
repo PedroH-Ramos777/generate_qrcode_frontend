@@ -36,7 +36,7 @@ export default function UploadTab() {
     formData.append('file', file);
 
     try {
-      const response = await axios.post('http://127.0.0.1:8000/qrcodes/ler-qrcode/', formData, {
+      const response = await axios.post('/api/qrcodes/ler-qrcode/', formData, {
         headers: { 'Content-Type': 'multipart/form-data' }
       });
       setResult(response.data.conteudo);

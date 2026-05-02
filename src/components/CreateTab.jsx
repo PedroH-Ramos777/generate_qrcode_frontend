@@ -16,7 +16,7 @@ export default function CreateTab() {
     setQrcodeUrl(null);
 
     try {
-      const response = await axios.post('http://127.0.0.1:8000/qrcodes/', 
+      const response = await axios.post('/api/qrcodes/', 
         { url, titulo },
         { responseType: 'blob' }
       );
