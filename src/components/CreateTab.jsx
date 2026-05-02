@@ -21,11 +21,15 @@ export default function CreateTab({ addToHistory }) {
         { responseType: 'blob' }
       );
       
-      const blobUrl = URL.createObjectURL(response.data);
-      setQrcodeUrl(blobUrl);
-      
-      if (addToHistory) {
-        addToHistory({ url, titulo });
+      if (response.data && response.data.size > 0) {
+        const blobUrl = URL.createObjectURL(response.data);
+        setQrcodeUrl(blobUrl);
+        
+        if (addToHistory) {
+          addToHistory({ url, titulo });
+        }
+      } else {
+        throw new Error('A resposta da API está vazia.');
       }
     } catch (err) {
       setError('Erro ao gerar QR Code. Verifique se a API está rodando.');

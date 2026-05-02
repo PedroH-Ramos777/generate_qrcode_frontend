@@ -8,8 +8,15 @@ import HistoryTab from './components/HistoryTab';
 function App() {
   const [activeTab, setActiveTab] = useState('create'); // Aba inicial alterada para Criar
   const [history, setHistory] = useState(() => {
-    const saved = localStorage.getItem('qr_history');
-    return saved ? JSON.parse(saved) : [];
+    try {
+      const saved = localStorage.getItem('qr_history');
+      if (!saved) return [];
+      const parsed = JSON.parse(saved);
+      return Array.isArray(parsed) ? parsed : [];
+    } catch (e) {
+      console.error("Erro ao carregar histórico:", e);
+      return [];
+    }
   });
 
   useEffect(() => {
@@ -17,10 +24,15 @@ function App() {
   }, [history]);
 
   const addToHistory = (item) => {
-    setHistory(prev => [
-      { ...item, id: Date.now(), date: new Date().toLocaleString('pt-BR') },
-      ...prev.slice(0, 49) // Limita a 50 itens
-    ]);
+    setHistory(prev => {
+      const currentHistory = Array.isArray(prev) ? prev : [];
+      const newItem = { 
+        ...item, 
+        id: Date.now(), 
+        date: new Date().toLocaleDateString('pt-BR') + ' ' + new Date().toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' })
+      };
+      return [newItem, ...currentHistory.slice(0, 49)];
+    });
   };
 
   const removeFromHistory = (id) => {
