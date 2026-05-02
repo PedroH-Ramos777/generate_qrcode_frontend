@@ -1,7 +1,7 @@
 import React, { useRef, useState, useCallback } from 'react';
 import Webcam from 'react-webcam';
 import { Scan, AlertCircle, Loader2 } from 'lucide-react';
-import axios from 'axios';
+import api from '../services/api';
 
 export default function CameraTab() {
   const webcamRef = useRef(null);
@@ -41,7 +41,7 @@ export default function CameraTab() {
       const formData = new FormData();
       formData.append('file', blob, 'camera_capture.jpg');
 
-      const response = await axios.post('/api/qrcodes/ler-qrcode/', formData, {
+      const response = await api.post('/qrcodes/ler-qrcode/', formData, {
         headers: { 'Content-Type': 'multipart/form-data' }
       });
       

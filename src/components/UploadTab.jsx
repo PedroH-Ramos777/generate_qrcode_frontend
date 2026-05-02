@@ -1,7 +1,7 @@
 import { useState, useCallback } from 'react';
 import { useDropzone } from 'react-dropzone';
 import { CloudUpload, QrCode, ScanLine, AlertCircle, CheckCircle2 } from 'lucide-react';
-import axios from 'axios';
+import api from '../services/api';
 
 export default function UploadTab() {
   const [file, setFile] = useState(null);
@@ -36,7 +36,7 @@ export default function UploadTab() {
     formData.append('file', file);
 
     try {
-      const response = await axios.post('/api/qrcodes/ler-qrcode/', formData, {
+      const response = await api.post('/qrcodes/ler-qrcode/', formData, {
         headers: { 'Content-Type': 'multipart/form-data' }
       });
       setResult(response.data.conteudo);

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link as LinkIcon, FileText, Wand2, CheckCircle, Download } from 'lucide-react';
-import axios from 'axios';
+import api from '../services/api';
 
 export default function CreateTab() {
   const [url, setUrl] = useState('');
@@ -16,7 +16,7 @@ export default function CreateTab() {
     setQrcodeUrl(null);
 
     try {
-      const response = await axios.post('/api/qrcodes/', 
+      const response = await api.post('/qrcodes/', 
         { url, titulo },
         { responseType: 'blob' }
       );
